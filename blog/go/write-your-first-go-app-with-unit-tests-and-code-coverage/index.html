@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Ahmed Ashraf">
+<meta name="description" content="Fullstack Developer @SpeakolAds">
+<meta name="generator" content="Hugo 0.32.3" />
+<title>Write Your First Go App With Unit Tests and Code Coverage</title>
+<link rel="shortcut icon" href="https://ahmedash95.github.io/images/favicon.ico">
+<link rel="stylesheet" href="https://ahmedash95.github.io/css/style.css">
+<link rel="stylesheet" href="https://ahmedash95.github.io/css/highlight.css">
+
+
+
+<link rel="stylesheet" href="https://ahmedash95.github.io/css/monosocialiconsfont.css">
+
+
+
+
+<meta property="og:title" content="Write Your First Go App With Unit Tests and Code Coverage" />
+<meta property="og:description" content="Go is a compiled, statically typed programming language created by Google.
+before starting I will assume that you are installed Go and printed a hello world . if you didn&rsquo;t do that yet install Go on your machine from here.
+What I will discuss/share with u here is how we could write a simple app that sum two integers with a TDD and Code Coverage.
+Step 1 : Starting a new Go Project I will create a simple main." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ahmedash95.github.io/blog/go/write-your-first-go-app-with-unit-tests-and-code-coverage/" />
+
+
+
+<meta property="article:published_time" content="2018-02-07T01:48:54&#43;02:00"/>
+
+<meta property="article:modified_time" content="2018-02-07T01:48:54&#43;02:00"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Write Your First Go App With Unit Tests and Code Coverage">
+<meta itemprop="description" content="Go is a compiled, statically typed programming language created by Google.
+before starting I will assume that you are installed Go and printed a hello world . if you didn&rsquo;t do that yet install Go on your machine from here.
+What I will discuss/share with u here is how we could write a simple app that sum two integers with a TDD and Code Coverage.
+Step 1 : Starting a new Go Project I will create a simple main.">
+
+
+<meta itemprop="datePublished" content="2018-02-07T01:48:54&#43;02:00" />
+<meta itemprop="dateModified" content="2018-02-07T01:48:54&#43;02:00" />
+<meta itemprop="wordCount" content="1742">
+
+
+
+<meta itemprop="keywords" content="" />
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Write Your First Go App With Unit Tests and Code Coverage"/>
+<meta name="twitter:description" content="Go is a compiled, statically typed programming language created by Google.
+before starting I will assume that you are installed Go and printed a hello world . if you didn&rsquo;t do that yet install Go on your machine from here.
+What I will discuss/share with u here is how we could write a simple app that sum two integers with a TDD and Code Coverage.
+Step 1 : Starting a new Go Project I will create a simple main."/>
+<meta name="twitter:site" content="@https://www.twitter.com/ahmedash95"/>
+
+
+    </head>
+<body>
+    <nav class="main-nav">
+	
+		<a href='https://ahmedash95.github.io/'> <span class="arrow">←</span>Home</a>
+	
+
+	
+
+	
+</nav>
+
+    <section id="wrapper">
+        
+        
+<article class="post">
+    <header>
+        <h1>Write Your First Go App With Unit Tests and Code Coverage</h1>
+        <h2 class="subtitle"></h2>
+        <h2 class="headline">
+        February 7, 2018
+        <br>
+        
+        </h2>
+    </header>
+    <section id="post-body">
+        
+
+<p>Go is a compiled, statically typed programming language created by Google.</p>
+
+<p>before starting I will assume that you are installed Go and printed a hello world . if you didn&rsquo;t do that yet install Go on your machine from <a href="https://golang.org/doc/install">here</a>.</p>
+
+<p>What I will discuss/share with u here is how we could write a simple app that sum two integers with a <a href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a> and <a href="https://en.wikipedia.org/wiki/Code_coverage">Code Coverage</a>.</p>
+
+<h1 id="step-1-starting-a-new-go-project">Step 1 : Starting a new Go Project</h1>
+
+<p>I will create a simple <code>main.go</code> and <code>main_test.go</code> file, in <strong>Go</strong> when you want to write a tests for your project you write the file name followed by <code>_test.go</code> so our directory structure will be</p>
+
+<pre><code>- $Project_Path
+    - main.go
+    - main_test.go
+</code></pre>
+
+<h1 id="step-2-write-our-first-unit-test-file">Step 2 : Write our first unit test file</h1>
+
+<p>Now because of <a href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a> we will write test case first then run it to get a failed test case</p>
+
+<pre><code class="language-golang">package main
+
+import (
+	&quot;testing&quot;
+)
+
+func Test_Sum(t *testing.T){
+	total := Sum(1,2)
+	if total != 3 {
+		t.Errorf(&quot;Sum was incorrect, got: %d, want: %d.&quot;, total, 3)
+	}
+}
+</code></pre>
+
+<p>now from terminal run <code>$ go test</code> you will get the output like below</p>
+
+<pre><code class="language-bash">./main_test.go:8:11: undefined: Sum
+FAIL    _/Users/ash/tmp/go [build failed]
+</code></pre>
+
+<p>we need to fix that failed test by writing a sum function in the <code>main.go</code> file</p>
+
+<pre><code class="language-golang">package main
+
+func Sum(a int, b int) int {
+	return 0
+}
+</code></pre>
+
+<p>then run the test again and we will get a different error message</p>
+
+<pre><code class="language-bash">--- FAIL: Test_Sum (0.00s)
+        main_test.go:10: Sum was incorrect, got: 0, want: 3.
+FAIL
+exit status 1
+FAIL    _/Users/ash/tmp/go      0.012s
+</code></pre>
+
+<p>now we now that our method is defined but doesn&rsquo;t work as expected so let&rsquo;s make it green by updating the <code>Sum()</code> method in our <code>main.go</code> file</p>
+
+<pre><code class="language-golang">package main
+
+func Sum(a int, b int) int {
+	return a + b
+}
+</code></pre>
+
+<p>then let&rsquo;s run the test again to get a pass test</p>
+
+<pre><code class="language-bash">PASS
+ok      _/Users/ash/tmp/go      0.012s
+</code></pre>
+
+<p><strong>Great</strong> Now let&rsquo;s make our <code>main.go</code> works as a real app by implementing a cli interface</p>
+
+<pre><code>package main
+
+import (
+	&quot;fmt&quot;
+)
+
+func main() {
+	var err error
+	var n1, n2 int
+	fmt.Print(&quot;Enter first number: &quot;)
+	_, err = fmt.Scanf(&quot;%d&quot;, &amp;n1)
+	fmt.Print(&quot;\nEnter second number: &quot;)
+	_, err = fmt.Scanf(&quot;%d&quot;, &amp;n2)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Printf(&quot;\nResult is : %d\n&quot;, Sum(n1, n2))
+}
+
+func Sum(a int, b int) int {
+	return a + b
+}
+</code></pre>
+
+<p>Let&rsquo;s explain what i did here is just defining an error variable named <code>err</code> to hold any errors when parsing the integers from console , then we start reading first number then the second and if any line of them contains none integer value we will panic with error if no errors we will print the sum of the two integers.</p>
+
+<p>Now if we execute the app using <code>$ go run main.go</code></p>
+
+<pre><code>$ go run main.go
+
+Enter first number: 1
+
+Enter second number: 2
+
+Result is : 3
+</code></pre>
+
+<p><strong>Okay</strong> if you think we are good now i&rsquo;m afraid to tell you we didn&rsquo;t finish yet .. tell now we wrote a nice and very simple app but we didn&rsquo;t know do we really covered it well or we miss something ? it might be easy to know because it&rsquo;s a tiny app but when you work on a small or large project we might get lost with this.</p>
+
+<p>fortunately go has a great cover flag to tell us if our code covered or now</p>
+
+<h1 id="step-3-code-coverage">Step 3 : Code Coverage</h1>
+
+<p><strong>From <a href="#">GoLang docs</a></strong></p>
+
+<blockquote>
+<p>Test coverage is a term that describes how much of a package&rsquo;s code is exercised by running the package&rsquo;s tests. If executing the test suite causes 80% of the package&rsquo;s source statements to be run, we say that the test coverage is 80%.</p>
+</blockquote>
+
+<h3 id="let-s-start">Let&rsquo;s start</h3>
+
+<p>now let&rsquo;s run the <code>$ go test -cover</code> to get the coverage value</p>
+
+<pre><code>PASS
+coverage: 10.0% of statements
+ok      _/Users/ash/tmp/go      0.009s
+</code></pre>
+
+<p><strong>OMG</strong> we just cover 10% of our code only !!. but this result isn&rsquo;t good enough, It must be a better way that helping us visualize this result.</p>
+
+<p>go has a nice test command flag called <code>-coverprofile</code> which is a file that holds the collected statistics so we can study them in more detail.</p>
+
+<p>so let&rsquo;s run our test again with the new flag</p>
+
+<pre><code>$ go test -coverprofile=coverage.out
+</code></pre>
+
+<p>now you will find a new file in your project path <code>coverage.out</code> contains the below lines</p>
+
+<pre><code>mode: set
+$PROJECT_PATH/main.go:7.13,14.16 7 0
+$PROJECT_PATH/main.go:18.2,18.47 1 0
+$PROJECT_PATH/main.go:14.16,15.13 1 0
+$PROJECT_PATH/main.go:21.28,23.2 1 1
+</code></pre>
+
+<p>I know it&rsquo;s not enough yet .. but guess what ;) Go has a command to visualize the statistics in <code>HTML</code> file</p>
+
+<pre><code>$ go tool cover -html=coverage.out
+</code></pre>
+
+<p>the above command will open a browser window contains your code with red and green syntax highlighting</p>
+
+<p><img src="/images/blog/go/write-your-first-go-app-with-unit-tests-and-code-coverage/code-coverage-screenshot.png" alt="code-coverage-screenshot" id="code-coverage-screenshot" style="margin:0 auto;"></p>
+
+<p><strong>Oh</strong> now we know that we didn&rsquo;t test our main function. okay let&rsquo;s write tests for it</p>
+
+<h1 id="step-4-write-testable-code">Step 4 : Write testable code</h1>
+
+<p>Now we know that we need to cover and write tests for the <code>main()</code> function but our code is not testable and we need to decouple a few things</p>
+
+<pre><code>- move the std input reading to separated method
+- write tests for the reading method
+</code></pre>
+
+<h4 id="step-a-separate-the-reading-method">Step A : Separate the reading method</h4>
+
+<p>in <code>main.go</code> file we will create a method called <code>Read()</code> that takes a io.Reader <code>interface{}</code> and return the value</p>
+
+<pre><code>package main
+
+import (
+	&quot;bufio&quot;
+	&quot;fmt&quot;
+	&quot;io&quot;
+	&quot;os&quot;
+)
+
+func main() {
+	var err error
+	var n1, n2 int
+
+	// create a buffer
+	reader := bufio.NewReader(os.Stdin)
+
+	fmt.Print(&quot;Enter first number: &quot;)
+	_, err = Read(reader, &quot;%d\n&quot;, &amp;n1)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Print(&quot;Enter second number: &quot;)
+	_, err = Read(reader, &quot;%d\n&quot;, &amp;n2)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Printf(&quot;\nResult is : %d\n&quot;, Sum(n1, n2))
+}
+
+func Read(stdIn io.Reader, format string, a ...interface{}) (int, error) {
+	return fmt.Fscanf(stdIn, format, a...)
+}
+
+func Sum(a int, b int) int {
+	return a + b
+}
+</code></pre>
+
+<p>Now our code is a little bit decoupled and we can use different io readers, now let&rsquo;s write a test case for the <code>Read()</code> method which we must do first but I think this way is better</p>
+
+<h4 id="step-b-writing-test">Step B: writing test</h4>
+
+<pre><code class="language-golang">func Test_Read_Method(t *testing.T) {
+	in, err := ioutil.TempFile(&quot;&quot;, &quot;&quot;)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer in.Close()
+
+	_, err = io.WriteString(in, &quot;3\n&quot;)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	_, err = in.Seek(0, os.SEEK_SET)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	reader := bufio.NewReader(in)
+	var v int
+	Read(reader, &quot;%d&quot;, &amp;v)
+
+	if v != 3 {
+		t.Errorf(&quot;invalid result, expected %d got %d&quot;, 3, v)
+	}
+}
+</code></pre>
+
+<p>our simple test method just make a temp file writing our input values into it using <code>io.WriteString()</code> method and pass it to our <code>Read()</code> method and make sure it returns the expected value</p>
+
+<p>Now let&rsquo;s run our code coverage test again to check the result</p>
+
+<p><img src="/images/blog/go/write-your-first-go-app-with-unit-tests-and-code-coverage/code-coverage-screenshot-2.png" alt="code-coverage-screenshot-2" id="code-coverage-screenshot-2" style="margin:0 auto;"></p>
+
+<p>Now we need to test our main method but we need a tiny edit in our code which is to set the reader and stdout objects so we can inject our reader into main function .. unfortunately GO doesn&rsquo;t have constructors so we can&rsquo;t use <a href="https://en.wikipedia.org/wiki/Dependency_injection">Dependency Injection</a>
+but a <code>setter and getter</code> approach would be perfect , now let&rsquo;s update our code</p>
+
+<pre><code class="language-golang">package main
+
+import (
+	&quot;bufio&quot;
+	&quot;fmt&quot;
+	&quot;io&quot;
+	&quot;os&quot;
+)
+
+var (
+	ioReader *bufio.Reader = bufio.NewReader(os.Stdin)
+	writer   io.Writer     = os.Stdout
+)
+
+func setReader(ir *bufio.Reader) {
+	ioReader = ir
+}
+
+func setWriter(wr io.Writer) {
+	writer = wr
+}
+
+func main() {
+	var err error
+	var n1, n2 int
+
+	fmt.Print(&quot;Enter first number: &quot;)
+	_, err = Read(ioReader, &quot;%d\n&quot;, &amp;n1)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Print(&quot;Enter second number: &quot;)
+	_, err = Read(ioReader, &quot;%d\n&quot;, &amp;n2)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Fprintf(writer, &quot;\nResult is : %d\n&quot;, Sum(n1, n2))
+}
+
+func Read(ir io.Reader, format string, a ...interface{}) (int, error) {
+	return fmt.Fscanf(ir, format, a...)
+}
+
+func Sum(a int, b int) int {
+	return a + b
+}
+</code></pre>
+
+<p>we just added these few lines to help use control the in and output io</p>
+
+<pre><code class="language-golang">var (
+	ioReader *bufio.Reader = bufio.NewReader(os.Stdin)
+	writer   io.Writer     = os.Stdout
+)
+
+func setReader(ir *bufio.Reader) {
+	ioReader = ir
+}
+
+func setWriter(wr io.Writer) {
+	writer = wr
+}
+</code></pre>
+
+<p>now let&rsquo;s write our test to <code>main()</code> function</p>
+
+<pre><code class="language-golang">func Test_Main_Method(t *testing.T) {
+	in, err := ioutil.TempFile(&quot;&quot;, &quot;&quot;)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer in.Close()
+
+	_, err = io.WriteString(in, &quot;3\n4\n&quot;)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	_, err = in.Seek(0, os.SEEK_SET)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	expected := &quot;Result is : 7&quot;
+
+	var b bytes.Buffer
+
+	// run main function
+	reader := bufio.NewReader(in)
+	setReader(reader)
+	setWriter(&amp;b)
+	main()
+
+	actual := strings.TrimSpace(b.String())
+	// _ = expected
+	if actual != expected {
+		t.Errorf(&quot;invalid result, expected %s got %s&quot;, actual, expected)
+	}
+}
+</code></pre>
+
+<p>as you see we just create an <code>io reader</code> and a <code>Buffer</code> to catch the output of our main method</p>
+
+<p>Let&rsquo;s run our tests again</p>
+
+<pre><code class="language-bash">$ go test -coverprofile=coverage.out &amp;&amp; go tool cover -html=coverage.out
+</code></pre>
+
+<p><img src="/images/blog/go/write-your-first-go-app-with-unit-tests-and-code-coverage/code-coverage-screenshot-3.png" alt="code-coverage-screenshot-3" id="code-coverage-screenshot-3" style="margin:0 auto;"></p>
+
+<p><strong>Yaaaay</strong> we made a good progress , just a two <code>panics</code> to reach 100% coverage</p>
+
+<h4 id="step-c-play-with-panics">Step C : Play with panics</h4>
+
+<p>Panics is the way to kill the running process of our app.</p>
+
+<p><strong>From <a href="https://gobyexample.com/panic">GO-By-Example</a></strong></p>
+
+<blockquote>
+<p>A panic typically means something went unexpectedly wrong. Mostly we use it to fail fast on errors that shouldn’t occur during normal operation, or that we aren’t prepared to handle gracefully.</p>
+</blockquote>
+
+<p>because <code>testing</code> doesn&rsquo;t really have the concept of &ldquo;success,&rdquo; only failure. So it&rsquo;s really easy to test panics in go. we just need to tests two cases only <code>First</code> and <code>Second</code> number panics</p>
+
+<pre><code class="language-golang">func Test_it_panics_when_receive_un_expected_input_for_first_number(t *testing.T) {
+	defer func() {
+		// When no panics fire the error method
+		if r := recover(); r == nil {
+			t.Errorf(&quot;The main method did not panic when we enter invalid values&quot;)
+		}
+    }()
+
+	in, err := ioutil.TempFile(&quot;&quot;, &quot;&quot;)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer in.Close()
+
+	_, err = io.WriteString(in, &quot;ah\n4\n&quot;)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	_, err = in.Seek(0, os.SEEK_SET)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// run main function
+	reader := bufio.NewReader(in)
+	setReader(reader)
+	main()
+
+}
+</code></pre>
+
+<p>So now the above test method will fail if the code running without any panics, don&rsquo;t forget to duplicate the same test case for the <code>Second number</code>.</p>
+
+<p>Now let&rsquo;s try running the tests with coverage and get a <code>100%</code> code coverage</p>
+
+<p><img src="/images/blog/go/write-your-first-go-app-with-unit-tests-and-code-coverage/code-coverage-screenshot-4.png" alt="code-coverage-screenshot-4" id="code-coverage-screenshot-4" style="margin:0 auto;"></p>
+
+<p><strong>Yaaay we did it</strong></p>
+
+<h1 id="conclusions">Conclusions</h1>
+
+<p>Write software is easy but writing a perfect one is not. in this article we explored many things hope you enjoyed it</p>
+
+<ul>
+<li>Unit Tests</li>
+<li>Test Panics</li>
+<li>Code Coverage statistics</li>
+<li>Code Coverage Reporting</li>
+<li>Playing with IO buffers</li>
+</ul>
+
+<h1 id="finally">Finally</h1>
+
+<p>I&rsquo;m not an expert Gopher so If you see something wrong here please post a comment to fix it</p>
+
+    </section>
+</article>
+
+<footer id="post-meta" class="clearfix">
+    <a href="https://twitter.com/ahmedash95">
+    <img class="avatar" src="https://ahmedash95.github.io/images/avatar.png">
+    <div>
+        <span class="dark">Ahmed Ashraf</span>
+        <span></span>
+    </div>
+    </a>
+    <section id="sharing">
+        <a class="twitter" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fahmedash95.github.io%2fblog%2fgo%2fwrite-your-first-go-app-with-unit-tests-and-code-coverage%2f - Write%20Your%20First%20Go%20App%20With%20Unit%20Tests%20and%20Code%20Coverage by @ahmedash95"><span class="icon-twitter"> tweet</span></a>
+
+<a class="facebook" href="#" onclick="
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+      'facebook-share-dialog',
+      'width=626,height=436');
+    return false;"><span class="icon-facebook-rect"> Share</span>
+</a>
+
+    </section>
+</footer>
+
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "ahmedash95-blog.disqus.com" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<ul id="post-list" class="archive readmore">
+    <h3>Read more</h3>
+
+    
+    
+    
+</ul>
+
+
+
+        <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    
+    <a class="symbol" href="https://www.facebook.com/ahmedash95">
+        circlefacebook
+    </a>
+    
+    <a class="symbol" href="https://www.github.com/ahmedash95">
+        circlegithub
+    </a>
+    
+    <a class="symbol" href="https://www.twitter.com/ahmedash95">
+        circletwitterbird
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+    
+        © Copyright 2018 Ahmed Ashraf
+    
+    </p>
+</footer>
+
+    </section>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://ahmedash95.github.io/js/main.js"></script>
+<script src="https://ahmedash95.github.io/js/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-93950970-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+</body>
+</html>
