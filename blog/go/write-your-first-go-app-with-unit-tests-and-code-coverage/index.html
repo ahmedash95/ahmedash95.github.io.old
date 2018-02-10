@@ -21,7 +21,7 @@
 
 <meta property="og:title" content="Write Your First Go App With Unit Tests and Code Coverage" />
 <meta property="og:description" content="Go is a compiled, statically typed programming language created by Google.
-before starting I will assume that you are installed Go and printed a hello world . if you didn&rsquo;t do that yet install Go on your machine from here.
+before starting I will assume that you installed Go and printed a hello world . if you didn&rsquo;t do that yet install Go on your machine from here.
 What I will discuss/share with u here is how we could write a simple app that sum two integers with a TDD and Code Coverage.
 Step 1 : Starting a new Go Project I will create a simple main." />
 <meta property="og:type" content="article" />
@@ -47,14 +47,14 @@ Step 1 : Starting a new Go Project I will create a simple main." />
 
 <meta itemprop="name" content="Write Your First Go App With Unit Tests and Code Coverage">
 <meta itemprop="description" content="Go is a compiled, statically typed programming language created by Google.
-before starting I will assume that you are installed Go and printed a hello world . if you didn&rsquo;t do that yet install Go on your machine from here.
+before starting I will assume that you installed Go and printed a hello world . if you didn&rsquo;t do that yet install Go on your machine from here.
 What I will discuss/share with u here is how we could write a simple app that sum two integers with a TDD and Code Coverage.
 Step 1 : Starting a new Go Project I will create a simple main.">
 
 
 <meta itemprop="datePublished" content="2018-02-07T01:48:54&#43;02:00" />
 <meta itemprop="dateModified" content="2018-02-07T01:48:54&#43;02:00" />
-<meta itemprop="wordCount" content="1742">
+<meta itemprop="wordCount" content="1702">
 
 
 
@@ -62,7 +62,7 @@ Step 1 : Starting a new Go Project I will create a simple main.">
 
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Write Your First Go App With Unit Tests and Code Coverage"/>
 <meta name="twitter:description" content="Go is a compiled, statically typed programming language created by Google.
-before starting I will assume that you are installed Go and printed a hello world . if you didn&rsquo;t do that yet install Go on your machine from here.
+before starting I will assume that you installed Go and printed a hello world . if you didn&rsquo;t do that yet install Go on your machine from here.
 What I will discuss/share with u here is how we could write a simple app that sum two integers with a TDD and Code Coverage.
 Step 1 : Starting a new Go Project I will create a simple main."/>
 <meta name="twitter:site" content="@https://www.twitter.com/ahmedash95"/>
@@ -98,13 +98,13 @@ Step 1 : Starting a new Go Project I will create a simple main."/>
 
 <p>Go is a compiled, statically typed programming language created by Google.</p>
 
-<p>before starting I will assume that you are installed Go and printed a hello world . if you didn&rsquo;t do that yet install Go on your machine from <a href="https://golang.org/doc/install">here</a>.</p>
+<p>before starting I will assume that you installed Go and printed a hello world . if you didn&rsquo;t do that yet install Go on your machine from <a href="https://golang.org/doc/install">here</a>.</p>
 
 <p>What I will discuss/share with u here is how we could write a simple app that sum two integers with a <a href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a> and <a href="https://en.wikipedia.org/wiki/Code_coverage">Code Coverage</a>.</p>
 
 <h1 id="step-1-starting-a-new-go-project">Step 1 : Starting a new Go Project</h1>
 
-<p>I will create a simple <code>main.go</code> and <code>main_test.go</code> file, in <strong>Go</strong> when you want to write a tests for your project you write the file name followed by <code>_test.go</code> so our directory structure will be</p>
+<p>I will create a simple <code>main.go</code> and <code>main_test.go</code> file, so our directory structure will be</p>
 
 <pre><code>- $Project_Path
     - main.go
@@ -153,7 +153,7 @@ exit status 1
 FAIL    _/Users/ash/tmp/go      0.012s
 </code></pre>
 
-<p>now we now that our method is defined but doesn&rsquo;t work as expected so let&rsquo;s make it green by updating the <code>Sum()</code> method in our <code>main.go</code> file</p>
+<p>now we know that our method is defined but doesn&rsquo;t work as expected so let&rsquo;s make it green by updating the <code>Sum()</code> method in our <code>main.go</code> file</p>
 
 <pre><code class="language-golang">package main
 
@@ -162,7 +162,7 @@ func Sum(a int, b int) int {
 }
 </code></pre>
 
-<p>then let&rsquo;s run the test again to get a pass test</p>
+<p>then run the test again to get a pass test</p>
 
 <pre><code class="language-bash">PASS
 ok      _/Users/ash/tmp/go      0.012s
@@ -195,7 +195,7 @@ func Sum(a int, b int) int {
 }
 </code></pre>
 
-<p>Let&rsquo;s explain what i did here is just defining an error variable named <code>err</code> to hold any errors when parsing the integers from console , then we start reading first number then the second and if any line of them contains none integer value we will panic with error if no errors we will print the sum of the two integers.</p>
+<p>What we did here is just defining an error variable named <code>err</code> to hold any errors when parsing the integers from console , then we start reading first and second number and if any line of them contains none integer value we will panic with error, if no errors we will print the sum of the two integers.</p>
 
 <p>Now if we execute the app using <code>$ go run main.go</code></p>
 
@@ -208,9 +208,9 @@ Enter second number: 2
 Result is : 3
 </code></pre>
 
-<p><strong>Okay</strong> if you think we are good now i&rsquo;m afraid to tell you we didn&rsquo;t finish yet .. tell now we wrote a nice and very simple app but we didn&rsquo;t know do we really covered it well or we miss something ? it might be easy to know because it&rsquo;s a tiny app but when you work on a small or large project we might get lost with this.</p>
+<p><strong>Okay</strong> if you think we are good now i&rsquo;m afraid to tell you we didn&rsquo;t finish yet .. until now we wrote a nice and very simple app but we didn&rsquo;t know do we really covered it well or we miss something ? it might be easy to know because it&rsquo;s a tiny app but when you work on a small or large project we might get lost with this.</p>
 
-<p>fortunately go has a great cover flag to tell us if our code covered or now</p>
+<p>fortunately, go has a great cover flag to tell us the code coverage status</p>
 
 <h1 id="step-3-code-coverage">Step 3 : Code Coverage</h1>
 
@@ -229,7 +229,7 @@ coverage: 10.0% of statements
 ok      _/Users/ash/tmp/go      0.009s
 </code></pre>
 
-<p><strong>OMG</strong> we just cover 10% of our code only !!. but this result isn&rsquo;t good enough, It must be a better way that helping us visualize this result.</p>
+<p><strong>OMG</strong> we only cover 10% of our code only !!. but this result isn&rsquo;t good enough, It must be a better way that helping us visualize this result.</p>
 
 <p>go has a nice test command flag called <code>-coverprofile</code> which is a file that holds the collected statistics so we can study them in more detail.</p>
 
@@ -262,13 +262,14 @@ $PROJECT_PATH/main.go:21.28,23.2 1 1
 
 <p>Now we know that we need to cover and write tests for the <code>main()</code> function but our code is not testable and we need to decouple a few things</p>
 
-<pre><code>- move the std input reading to separated method
-- write tests for the reading method
-</code></pre>
+<ul>
+<li>move the std input reading to separated method</li>
+<li>write tests for the reading method</li>
+</ul>
 
 <h4 id="step-a-separate-the-reading-method">Step A : Separate the reading method</h4>
 
-<p>in <code>main.go</code> file we will create a method called <code>Read()</code> that takes a io.Reader <code>interface{}</code> and return the value</p>
+<p>in <code>main.go</code> file we will create a method called <code>Read()</code> that takes an io.Reader <code>interface{}</code> and return the value</p>
 
 <pre><code>package main
 
@@ -347,7 +348,7 @@ func Sum(a int, b int) int {
 
 <p><img src="/images/blog/go/write-your-first-go-app-with-unit-tests-and-code-coverage/code-coverage-screenshot-2.png" alt="code-coverage-screenshot-2" id="code-coverage-screenshot-2" style="margin:0 auto;"></p>
 
-<p>Now we need to test our main method but we need a tiny edit in our code which is to set the reader and stdout objects so we can inject our reader into main function .. unfortunately GO doesn&rsquo;t have constructors so we can&rsquo;t use <a href="https://en.wikipedia.org/wiki/Dependency_injection">Dependency Injection</a>
+<p>Now we need to test our main method but we need to make a tiny edit in our code which is to set the reader and stdout objects so we can inject our reader into main function .. unfortunately GO doesn&rsquo;t have constructors so we can&rsquo;t use <a href="https://en.wikipedia.org/wiki/Dependency_injection">Dependency Injection</a>
 but a <code>setter and getter</code> approach would be perfect , now let&rsquo;s update our code</p>
 
 <pre><code class="language-golang">package main
@@ -400,7 +401,7 @@ func Sum(a int, b int) int {
 }
 </code></pre>
 
-<p>we just added these few lines to help use control the in and output io</p>
+<p>we just added these few lines to help use control the in/out io</p>
 
 <pre><code class="language-golang">var (
 	ioReader *bufio.Reader = bufio.NewReader(os.Stdin)
@@ -518,7 +519,7 @@ func setWriter(wr io.Writer) {
 
 <h1 id="conclusions">Conclusions</h1>
 
-<p>Write software is easy but writing a perfect one is not. in this article we explored many things hope you enjoyed it</p>
+<p>In this article we explored many things hope you enjoyed it</p>
 
 <ul>
 <li>Unit Tests</li>
