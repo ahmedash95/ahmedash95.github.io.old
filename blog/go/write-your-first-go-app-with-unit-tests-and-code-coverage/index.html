@@ -21,7 +21,7 @@
 
 <meta property="og:title" content="Write Your First Go App With Unit Tests and Code Coverage" />
 <meta property="og:description" content="Go is a compiled, statically typed programming language created by Google.
-before starting I will assume that you installed Go and printed a hello world . if you didn&rsquo;t do that yet install Go on your machine from here.
+Before starting I will assume that you installed Go and printed a hello world. if you didn&rsquo;t do that yet install Go on your machine from here.
 What I will discuss/share with u here is how we could write a simple app that sum two integers with a TDD and Code Coverage.
 Step 1 : Starting a new Go Project I will create a simple main." />
 <meta property="og:type" content="article" />
@@ -47,14 +47,14 @@ Step 1 : Starting a new Go Project I will create a simple main." />
 
 <meta itemprop="name" content="Write Your First Go App With Unit Tests and Code Coverage">
 <meta itemprop="description" content="Go is a compiled, statically typed programming language created by Google.
-before starting I will assume that you installed Go and printed a hello world . if you didn&rsquo;t do that yet install Go on your machine from here.
+Before starting I will assume that you installed Go and printed a hello world. if you didn&rsquo;t do that yet install Go on your machine from here.
 What I will discuss/share with u here is how we could write a simple app that sum two integers with a TDD and Code Coverage.
 Step 1 : Starting a new Go Project I will create a simple main.">
 
 
 <meta itemprop="datePublished" content="2018-02-07T01:48:54&#43;02:00" />
 <meta itemprop="dateModified" content="2018-02-07T01:48:54&#43;02:00" />
-<meta itemprop="wordCount" content="1702">
+<meta itemprop="wordCount" content="1682">
 
 
 
@@ -62,7 +62,7 @@ Step 1 : Starting a new Go Project I will create a simple main.">
 
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Write Your First Go App With Unit Tests and Code Coverage"/>
 <meta name="twitter:description" content="Go is a compiled, statically typed programming language created by Google.
-before starting I will assume that you installed Go and printed a hello world . if you didn&rsquo;t do that yet install Go on your machine from here.
+Before starting I will assume that you installed Go and printed a hello world. if you didn&rsquo;t do that yet install Go on your machine from here.
 What I will discuss/share with u here is how we could write a simple app that sum two integers with a TDD and Code Coverage.
 Step 1 : Starting a new Go Project I will create a simple main."/>
 <meta name="twitter:site" content="@https://www.twitter.com/ahmedash95"/>
@@ -98,7 +98,7 @@ Step 1 : Starting a new Go Project I will create a simple main."/>
 
 <p>Go is a compiled, statically typed programming language created by Google.</p>
 
-<p>before starting I will assume that you installed Go and printed a hello world . if you didn&rsquo;t do that yet install Go on your machine from <a href="https://golang.org/doc/install">here</a>.</p>
+<p>Before starting I will assume that you installed Go and printed a hello world. if you didn&rsquo;t do that yet install Go on your machine from <a href="https://golang.org/doc/install">here</a>.</p>
 
 <p>What I will discuss/share with u here is how we could write a simple app that sum two integers with a <a href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a> and <a href="https://en.wikipedia.org/wiki/Code_coverage">Code Coverage</a>.</p>
 
@@ -112,8 +112,6 @@ Step 1 : Starting a new Go Project I will create a simple main."/>
 </code></pre>
 
 <h1 id="step-2-write-our-first-unit-test-file">Step 2 : Write our first unit test file</h1>
-
-<p>Now because of <a href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a> we will write test case first then run it to get a failed test case</p>
 
 <pre><code class="language-golang">package main
 
@@ -168,7 +166,7 @@ func Sum(a int, b int) int {
 ok      _/Users/ash/tmp/go      0.012s
 </code></pre>
 
-<p><strong>Great</strong> Now let&rsquo;s make our <code>main.go</code> works as a real app by implementing a cli interface</p>
+<p><strong>Great</strong> Now let&rsquo;s make our <code>main.go</code> work as a real app by implementing a cli interface</p>
 
 <pre><code>package main
 
@@ -401,7 +399,7 @@ func Sum(a int, b int) int {
 }
 </code></pre>
 
-<p>we just added these few lines to help use control the in/out io</p>
+<p>we just added these few lines to help us control the in/out io</p>
 
 <pre><code class="language-golang">var (
 	ioReader *bufio.Reader = bufio.NewReader(os.Stdin)
@@ -517,7 +515,7 @@ func setWriter(wr io.Writer) {
 
 <p><strong>Yaaay we did it</strong></p>
 
-<h1 id="conclusions">Conclusions</h1>
+<h1 id="conclusion">Conclusion</h1>
 
 <p>In this article we explored many things hope you enjoyed it</p>
 

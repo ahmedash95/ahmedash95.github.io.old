@@ -19,7 +19,7 @@
       
       <guid>https://ahmedash95.github.io/blog/go/write-your-first-go-app-with-unit-tests-and-code-coverage/</guid>
       <description>Go is a compiled, statically typed programming language created by Google.
-before starting I will assume that you installed Go and printed a hello world . if you didn&amp;rsquo;t do that yet install Go on your machine from here.
+Before starting I will assume that you installed Go and printed a hello world. if you didn&amp;rsquo;t do that yet install Go on your machine from here.
 What I will discuss/share with u here is how we could write a simple app that sum two integers with a TDD and Code Coverage.
 Step 1 : Starting a new Go Project I will create a simple main.</description>
     </item>
