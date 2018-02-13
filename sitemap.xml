@@ -3,19 +3,24 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://ahmedash95.github.io/blog/go/golang-mux-ratelimit/</loc>
+    <lastmod>2018-02-13T12:49:33+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://ahmedash95.github.io/blog/go/write-your-first-go-app-with-unit-tests-and-code-coverage/</loc>
     <lastmod>2018-02-07T01:48:54+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://ahmedash95.github.io/</loc>
-    <lastmod>2018-02-07T01:48:54+02:00</lastmod>
+    <lastmod>2018-02-13T12:49:33+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://ahmedash95.github.io/blog/</loc>
-    <lastmod>2018-02-07T01:48:54+02:00</lastmod>
+    <lastmod>2018-02-13T12:49:33+02:00</lastmod>
     <priority>0</priority>
   </url>
   

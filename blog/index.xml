@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright 2018 Ahmed Ashraf</copyright>
-    <lastBuildDate>Wed, 07 Feb 2018 01:48:54 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 13 Feb 2018 12:49:33 +0200</lastBuildDate>
     
 	<atom:link href="https://ahmedash95.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>GoLang API rate limit</title>
+      <link>https://ahmedash95.github.io/blog/go/golang-mux-ratelimit/</link>
+      <pubDate>Tue, 13 Feb 2018 12:49:33 +0200</pubDate>
+      
+      <guid>https://ahmedash95.github.io/blog/go/golang-mux-ratelimit/</guid>
+      <description>A few days ago I published my first go package GoLang Rate Limit.
+the purpose of this package is to prevent DDos attack and control the rate of traffic sent or received on the network. In this article I will describe how to implement it with gorilla/mux.
+So let&amp;rsquo;s start with writing a simple API package main import ( &amp;quot;log&amp;quot; &amp;quot;net/http&amp;quot; &amp;quot;github.com/gorilla/mux&amp;quot; ) func main() { // Initialize Router router := mux.</description>
+    </item>
     
     <item>
       <title>Write Your First Go App With Unit Tests and Code Coverage</title>
